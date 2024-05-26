@@ -8,6 +8,7 @@ route.get('/', homeController.index);
 route.get('/login', loginController.index);
 route.post('/login/entrar', loginController.login);
 route.post('/login/registrar', loginController.registrar);
+route.get('/login/sair', loginController.sair);
 
 module.exports = route;
   

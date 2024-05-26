@@ -16,6 +16,24 @@ class Login {
     this.error = [];
   }
 
+  async authenticate() {
+    this.valida();
+    if(this.error.length > 0) return;
+
+    this.user = await LoginModel.findOne({ email: this.body.email });
+
+    if(!this.user) {
+      this.error.push('Usuário ou senha inválido!');
+      return;
+    }
+
+    if(!bcryptjs.compareSync(this.body.password, this.user.password)) {
+      this.error.push('Usuário ou senha inválido!');
+      this.user = null;
+      return;
+    }
+  }
+
   async register() {
     this.valida();
     if(this.error.length > 0) return;
