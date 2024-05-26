@@ -9,7 +9,12 @@
 
           <%- include('includes/messages'); %>
 
-          <form action="contatos/cadastrar" method="post">
+          <% if(!contato._id) { %>
+            <form action="/contatos/cadastrar" method="post">
+          <% } else { %>
+            <form action="/contatos/atualizar/<%= contato._id %>" method="post">
+          <% } %>
+
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     
             <div class="form-group">

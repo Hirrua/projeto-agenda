@@ -26,6 +26,16 @@ class Contato {
         this.contato = await ContatoModel.create(this.body);
     }
 
+    async edit(id) {
+      if(typeof id !== 'string') return;
+
+      this.valida();
+      if(this.error.length > 0) return;
+
+      this.contato = await ContatoModel.findByIdAndUpdate(id, this.body, { new: true });
+
+    }
+
     static async searchId(id) {
       if(typeof id !== 'string') return;
       const contato = await ContatoModel.findById(id);

@@ -15,7 +15,8 @@ route.get('/login/sair', loginController.sair);
 
 route.get('/contatos', loginRequired, contatosController.index);
 route.post('/contatos/cadastrar', loginRequired, contatosController.cadastrar);
-route.get('/contatos/:id', loginRequired, contatosController.atualizar);
+route.get('/contatos/:id', loginRequired, contatosController.editarIndex);
+route.post('/contatos/atualizar/:id', loginRequired, contatosController.atualizar);
 
 module.exports = route;
   

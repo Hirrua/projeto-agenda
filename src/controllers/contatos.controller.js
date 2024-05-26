@@ -27,7 +27,7 @@ exports.cadastrar = async (req, res) => {
     }
 }
 
-exports.atualizar = async (req, res) => {
+exports.editarIndex = async (req, res) => {
     try {
         if(!req.params.id) return res.render('404');
 
@@ -38,5 +38,31 @@ exports.atualizar = async (req, res) => {
         res.render('contatos', { contato })
     } catch {
         res.render('404');
+    }
+}
+
+exports.atualizar = async (req, res) => {
+    try {
+        if(!req.params.id) return res.render('404');
+
+        const contato = new Contato(req.body);
+
+        await contato.edit(req.params.id);
+
+        if(contato.error.length > 0) {
+            req.flash('error', contato.error);
+            req.session.save(() => {
+                return res.redirect(`/contatos/${contato.contato._id}`);
+            });
+            return;
+        }
+
+        req.flash('sucess', 'Contato atualizado com sucesso');
+        req.session.save(() => {
+            return res.redirect(`/contatos/${contato.contato._id}`);
+        });
+
+    } catch {
+        res.render('404')
     }
 }
