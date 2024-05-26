@@ -1,0 +1,33 @@
+<%- include('includes/head'); %>
+
+<%- include('includes/nav'); %>
+
+  <div class="container">
+    <div class="row">
+        <div class="col-lg-8 my-5">
+          <h1 class="text-center">Painel de contatos</h1>
+
+          <%- include('includes/messages'); %>
+
+          <form action="contatos/cadastrar" method="post">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    
+            <div class="form-group">
+              <label>Nome</label>
+              <input value="<%= contato.nome %>" type="text" class="form-control" name="nome">
+              <label>Sobrenome</label>
+              <input value="<%= contato.sobrenome %>" type="text" class="form-control" name="sobrenome">
+              <label>Email</label>
+              <input value="<%= contato.email %>" type="email" class="form-control" name="email">
+              <label>Telefone</label>
+              <input value="<%= contato.telefone %>" type="text" class="form-control" name="telefone">
+            </div>
+    
+            <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+    
+          </form>
+        </div>
+    </div>
+  </div>
+
+<%- include('includes/footer'); %>
