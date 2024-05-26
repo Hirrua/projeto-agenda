@@ -1,0 +1,15 @@
+<% if (typeof error !== 'undefined' && error.length > 0) { %>
+  <div class="alert alert-danger">
+    <% error.forEach(erro => { %>
+      <p><%= erro %></p>
+    <% }); %>
+  </div>
+<% } %>
+
+<% if (sucess.length > 0) { %>
+  <div class="alert alert-success">
+    <% sucess.forEach(sucesso => { %>
+      <p><%= sucesso %></p>
+    <% }); %>
+  </div>
+<% } %>
