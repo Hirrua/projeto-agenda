@@ -70,7 +70,6 @@ exports.atualizar = async (req, res) => {
 exports.deletar = async (req, res) => {
     try {
         if(!req.params.id) return res.render('404');
-        console.log(req.params.id)
         const contato = await Contato.deletar(req.params.id);
     
         if(!contato) return res.render('404');
