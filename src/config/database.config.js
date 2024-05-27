@@ -1,5 +1,5 @@
-require('dotenv').config();
-const mongoose = require('mongoose');
+require('dotenv').config(); // Uma forma de ocultar as informações sensiveis, assim cada um podendo configurar da sua maneira
+const mongoose = require('mongoose'); // Mongoose pra fazer a conexão com mongodb
 
 mongoose.connect(process.env.CONNECTIONSTRING, { useNewUrlParser: true, useUnifiedTopology: true })
 

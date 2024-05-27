@@ -27,6 +27,7 @@ class Login {
       return;
     }
 
+    // Valida a senha com o hash da senha salva no banco
     if(!bcryptjs.compareSync(this.body.password, this.user.password)) {
       this.error.push('Usuário ou senha inválido!');
       this.user = null;
@@ -42,14 +43,17 @@ class Login {
 
     if(this.error.length > 0) return;
 
+    // "Criptografa" a senha, transformando em um hash
     const salt = bcryptjs.genSaltSync();
     this.body.password = bcryptjs.hashSync(this.body.password, salt);
     
+    // Salva no banco
     this.user = await LoginModel.create(this.body);
     
   }
 
   async userExists() {
+    // Busca no banco se aquele email já foi cadastrado
     const user = await LoginModel.findOne({ email: this.body.email });
 
     if(user) {
@@ -60,6 +64,7 @@ class Login {
   valida() {
     this.cleanUp();
 
+    // Uma biblioteca que valida se aquilo realmente é um email
     if(!validator.isEmail(this.body.email)) {
       this.error.push('E-mail inválido');
     }
@@ -70,6 +75,7 @@ class Login {
   }
 
   cleanUp() {
+    // Limpa os campos, garantindo que só possua strings
     for(let key in this.body) {
       if(typeof this.body[key] !== 'string') {
         this.body[key] = '';
