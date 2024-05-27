@@ -35,7 +35,7 @@ exports.editarIndex = async (req, res) => {
     
         if(!contato) return res.render('404');
     
-        res.render('contatos', { contato })
+        res.render('contatos', { contato });
     } catch {
         res.render('404');
     }
@@ -65,4 +65,21 @@ exports.atualizar = async (req, res) => {
     } catch {
         res.render('404')
     }
+}
+
+exports.deletar = async (req, res) => {
+    try {
+        if(!req.params.id) return res.render('404');
+        console.log(req.params.id)
+        const contato = await Contato.deletar(req.params.id);
+    
+        if(!contato) return res.render('404');
+    
+        req.flash('sucess', 'Contato deletado com sucesso');
+        req.session.save(() => {
+            return res.redirect('back');
+        });
+    } catch {
+        res.render('404');
+    }   
 }

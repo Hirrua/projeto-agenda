@@ -17,6 +17,6 @@ route.get('/contatos', loginRequired, contatosController.index);
 route.post('/contatos/cadastrar', loginRequired, contatosController.cadastrar);
 route.get('/contatos/:id', loginRequired, contatosController.editarIndex);
 route.post('/contatos/atualizar/:id', loginRequired, contatosController.atualizar);
+route.get('/contatos/deletar/:id', loginRequired, contatosController.deletar);
 
 module.exports = route;
-  
