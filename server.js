@@ -16,9 +16,6 @@ app.use(helmet());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Conteúdo estático (bundle, imgs, etc) que pode ser acessado diretamente
-app.use(express.static(path.resolve(__dirname, 'public')));
-
 app.set('views', path.resolve(__dirname, 'src', 'views'));
 app.set('view engine', 'ejs'); // Engine que vai ser utilizado para criar os templates (HTML)
 

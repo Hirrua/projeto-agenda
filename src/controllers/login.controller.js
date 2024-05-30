@@ -14,7 +14,7 @@ exports.login = async (req, res) => {
             req.flash('error', login.error);
 
             req.session.save(() => {
-                return res.redirect('back');
+                return res.redirect('/login');
             });
             return;
         }
